@@ -1,1 +1,2 @@
-export {default} from "./Search.js";
+export * from "./Search";
+export * from "./Table";

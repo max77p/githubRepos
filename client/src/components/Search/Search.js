@@ -1,9 +1,16 @@
 import React from "react";
 import Aux from "../../hoc/Aux";
+import { Table } from "../../components/Search";
 import "./Search.css";
 
-const Search = (props) => {
-  return (
+export const Search = props => {
+  console.log(props.resp);
+  let content=Object.keys(props.resp).map(x=>{
+    return (
+      <Table response={props.resp[x]}/>
+    )
+  })
+  return [
     <Aux>
       <form className="formStyle" onSubmit={props.submit}>
         <div class="form-group searchSection">
@@ -17,10 +24,23 @@ const Search = (props) => {
             onChange={props.change}
           />
         </div>
-        <button type="submit" class="btn btn-primary" onClick={props.submit}>Submit</button>
+        <button type="submit" class="btn btn-primary" onClick={props.submit}>
+          Submit
+        </button>
       </form>
-    </Aux>
-  );
+    </Aux>,
+    <table className="table table-borderless">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Language</th>
+          <th scope="col">latest tag</th>
+          <th scope="col" />
+        </tr>
+      </thead>
+      <tbody>
+          {content}
+      </tbody>
+    </table>
+  ];
 };
-
-export default Search;
