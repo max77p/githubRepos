@@ -1,32 +1,29 @@
-# reactNYTScraper
-NYT scraper and article saver using Reactjs
+# Web Developer Intern Challenge
 
-## How does it work?
+Build a web app to search Github repositories, favourite repos, manage favourites.
 
-- Uses NYT Search API and orders results by New
-- Algorithm checks to see how many records users requested
-            - on search, the program checks to see if local data has axios response data
-            - if it doesnt, then an axios call is made
-            - if the records user requested is less than the number of items in the temporary local data
-              then just pull from the local data instead of making a server request
-            - once the records requested is greater than the number of items in the temporary hold,
-              then make an axios call to get more data and add to the temporary hold
-            - all of this prevents unnecessary server calls
-- if new search is made everything is cleared and program starts again
-- on saving of article, socket.io sends a notification to all users connected to app except the person who saved it
+## Instructions
+- **Reproduce the designs** provided in the [screenshots](screenshots/desktop.jpg)
+- Must use Github API **v3 or v4** - done
+- Typing in the search input field should **NOT** perform an API call 
+- Hitting enter or clicking the "Search" button should perform an API call to Github
+- Performing a search should render a list of **10 repositories**
+	- Each item should
+		- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github
+		- render the name of the primary language
+		- render the latest release tag **if present**
+		- render the "Add" button **if the repo is not already favourited**
+		- clicking the "Add" button should add the repo to the favourites list
+- When the search input field is cleared, the list of results should cleared
+- When the number of favourites is **more than one**
+	- render a **list of favourited repositories**
+		- Each item should
+			- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github
+			- render the name of the primary language
+			- render the latest release tag if present
+			- render the "Remove" button **if the repo has been favourited**
+			- clicking the "Remove" button should remove the repo from the favourites list
 
-## Technologies Used
-- React.js
-- Socket.io
-- Express
-- Mongoose
-- Node
-- Bootstrap
-- HTML
-- CSS
-
-## Future implementation
-- modal view, so user can quick view an article before visiting the site
-- implementation of bootstrap pagination for better presentation
-- user authentication so saved articles is specific to the user
-
+## Notes
+- [Github Developer](https://developer.github.com/)
+- [Docs on how to create a personal access token to make request to the Github API](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
