@@ -1,0 +1,11 @@
+.formStyle{
+    border:2px solid blue;
+    display:flex;
+    justify-content: space-between;
+}
+
+.searchSection{
+    margin:0;
+    width:100%;
+    padding-right:2em;
+}

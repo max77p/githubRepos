@@ -1,0 +1,12 @@
+.leftSearch{
+    border:1px solid black;
+}
+
+.mainRow{
+    height:100vh;
+    border:1px solid black;
+}
+
+.leftCol,.rightCol{
+    border:1px solid red;
+}
