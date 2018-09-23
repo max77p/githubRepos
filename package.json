@@ -1,8 +1,8 @@
 {
-  "name": "client",
+  "homepage": "https://max77p.github.io/githubRepos",
+  "name": "githubrepo",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.5.0",
@@ -14,9 +14,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
-  "engines": {
-    "node": "8.10.0"
+  "devDependencies": {
+    "gh-pages": "^2.0.0"
   }
 }
