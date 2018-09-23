@@ -4,12 +4,17 @@ import { Table } from "../../components/Search";
 import "./Search.css";
 
 export const Search = props => {
-  console.log(props.resp);
-  let content=Object.keys(props.resp).map(x=>{
-    return (
-      <Table response={props.resp[x]}/>
-    )
-  })
+let content=[];
+
+ Object.keys(props.resp).map(x => {
+    if (props.itemsSaved.includes(props.resp[x].id)) {
+     content.push(<Table response={props.resp[x]} click={props.clickSave} saved={true}/>);
+    }
+    else{
+      content.push(<Table response={props.resp[x]} click={props.clickSave} saved={false}/>)
+    }
+  });
+
   return [
     <Aux>
       <form className="formStyle" onSubmit={props.submit}>
@@ -38,9 +43,7 @@ export const Search = props => {
           <th scope="col" />
         </tr>
       </thead>
-      <tbody>
-          {content}
-      </tbody>
+      <tbody>{content}</tbody>
     </table>
   ];
 };

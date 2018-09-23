@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import "./Home.css";
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Nav from "../../components/Nav";
-import {Search} from "../../components/Search";
-import Saved from "../../components/Saved";
+import { Search } from "../../components/Search";
+import { Saved } from "../../components/Saved";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.clickToAdd = this.clickToAdd.bind(this);
     this.state = {
       response: [],
-      search: ""
+      search: "",
+      saved: [],
+      addedItems: [],
+      disableBtn: false
     };
   }
 
@@ -32,7 +34,53 @@ class Home extends Component {
     this.apicall();
   };
 
-  componentDidMount() {}
+  clickToAdd = (event, id) => {
+    event.preventDefault();
+    console.log(id);
+    var getid = event.target.getAttribute("data-id");
+    var y = JSON.parse(getid);
+    // console.log(this.state.response);
+
+    this.setState(
+      prevState => {
+        return {
+          saved: [...prevState.saved, y],
+          addedItems: [...prevState.addedItems, id]
+        };
+      },
+      () => {
+
+        console.log("**********added state****************")
+        console.log(this.state.saved);
+        console.log(this.state.addedItems);
+      }
+    );
+  };
+
+  clickToRemove = (event, id) => {
+    event.preventDefault();
+    console.log(id);
+    var getid = event.target.getAttribute("data-id");
+    var y = JSON.parse(getid);
+
+    this.setState(
+      prevState => {
+        return {
+          saved: prevState.saved.filter((val,index)=>{
+            return val.id !==id;
+          }),
+          addedItems:prevState.addedItems.filter((val,index)=>{
+            return val!==id;
+          }),
+        };
+      },
+      () => {
+        console.log("**********removed state****************")
+        console.log(this.state.saved);
+        console.log(this.state.addedItems);
+      }
+    );
+  };
 
   apicall() {
     var search = this.state.search;
@@ -43,7 +91,7 @@ class Home extends Component {
         var searchitems = res.data.items.slice(0, 10);
         this.setState(prevState => {
           return {
-            response: [...searchitems]
+            response: [...prevState.response, ...searchitems]
           };
         });
       }
@@ -51,10 +99,18 @@ class Home extends Component {
   }
 
   render() {
-    // var content = [];
-    // {this.state.response.map(x=>{
-    //   content.push(x);
-    // })}
+    let saved;
+    if (this.state.saved.length > 1) {
+      saved = (
+        <Saved
+          saved={this.state.saved}
+          itemsSaved={this.state.addedItems}
+          clickRemove={this.clickToRemove}
+        />
+      );
+    } else {
+      saved = null;
+    }
 
     return [
       <Nav />,
@@ -67,13 +123,13 @@ class Home extends Component {
               change={this.handleChange}
               value={this.state.search}
               resp={this.state.response}
+              clickSave={this.clickToAdd}
+              itemsSaved={this.state.addedItems}
             />
           </div>
         </div>
         <div className="col-md-6 rightCol">
-          <div className="container">
-            <Saved />
-          </div>
+          <div className="container">{saved}</div>
         </div>
       </div>
     ];

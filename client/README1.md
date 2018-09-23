@@ -4,18 +4,21 @@ Build a web app to search Github repositories, favourite repos, manage favourite
 
 ## Instructions
 - **Reproduce the designs** provided in the [screenshots](screenshots/desktop.jpg)
-- Must use Github API **v3 or v4** - done
-- Typing in the search input field should **NOT** perform an API call 
-- Hitting enter or clicking the "Search" button should perform an API call to Github
+- Must use Github API **v3 or v4** - DONE
+- Typing in the search input field should **NOT** perform an API call - DONE
+- Hitting enter or clicking the "Search" button should perform an API call to Github -DONE
+
 - Performing a search should render a list of **10 repositories**
 	- Each item should
-		- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github
-		- render the name of the primary language
+		- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github - DONE
+		- render the name of the primary language -DONE
 		- render the latest release tag **if present**
-		- render the "Add" button **if the repo is not already favourited**
-		- clicking the "Add" button should add the repo to the favourites list
+		- render the "Add" button **if the repo is not already favourited** -DONE
+		- clicking the "Add" button should add the repo to the favourites list -DONE
 - When the search input field is cleared, the list of results should cleared
-- When the number of favourites is **more than one**
+
+
+- When the number of favourites is **more than one** - DONE
 	- render a **list of favourited repositories**
 		- Each item should
 			- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github

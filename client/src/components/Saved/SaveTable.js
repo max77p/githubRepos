@@ -2,21 +2,22 @@ import React from "react";
 import Aux from "../../hoc/Aux";
 import { Btn } from "../Btn";
 
-export const Table = props => {
+export const SaveTable = props => {
   let button = [];
   let savedBtn=[]
-  // console.log(props.response);
+  console.log(props.response);
 
   if (props.saved) {
-    button.push("");
-  } else {
     button.push(
-      <Btn
-        click={props.click}
-        response={props.response}
-        itemsSaved={props.itemsSaved}
-      />
-    );
+        <Btn
+          click={props.clickRemove}
+          response={props.response}
+          itemsSaved={props.itemsSaved}
+          saved={props.saved}
+        />
+      );
+  } else {
+    button.push("");
   }
 
   
