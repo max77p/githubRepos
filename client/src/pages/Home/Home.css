@@ -1,12 +1,19 @@
 .leftSearch{
-    border:1px solid black;
+    /* border:1px solid black; */
 }
 
 .mainRow{
-    height:100vh;
-    border:1px solid black;
+    height:100%;
+    border:1px solid rgb(221,222,222);
+    margin:0 1em 0 1em;
+}
+.leftCol,.rightCol{
+    /* border:1px solid red; */
+    height:40em;
+    overflow:scroll;
 }
 
-.leftCol,.rightCol{
-    border:1px solid red;
+.rightCol{
+    background-color:rgb(239,233,255);
+    
 }

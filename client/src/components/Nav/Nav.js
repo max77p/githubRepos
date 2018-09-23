@@ -1,11 +1,11 @@
 import React from "react";
-
+import "./Nav.css";
 const Nav = () => {
   return (
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">
-          Home
+    <ul className="nav justify-content-center navStyle">
+      <li className="nav-item">
+        <a className="nav-link active" href="#">
+          My Github Favorites
         </a>
       </li>
     </ul>

@@ -1,11 +1,53 @@
 .formStyle{
-    border:2px solid blue;
+    /* border:2px solid blue; */
     display:flex;
     justify-content: space-between;
+    margin-top:2em;
 }
 
 .searchSection{
     margin:0;
     width:100%;
-    padding-right:2em;
+    padding-right:0.5em;
+}
+
+.table{
+    margin-top:2em;
+}
+
+.table thead tr{
+    width: 100%;
+    white-space:nowrap;
+}
+
+.table thead tr th{
+   font-size:12px;
+}
+
+
+.searchResultsTable td{
+  color: black;
+  font-weight:400;
+  font-size:12px;
+}
+
+.gitHubLink{
+    color:black;
+    font-weight:400;
+    font-size:12px;
+}
+.searchBtnStyle{
+    width:10em;
+    background-color:rgb(104,42,239);
+}
+
+input[type="text"]:focus, input[type="text"]:active{
+    background-color:white !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
 }

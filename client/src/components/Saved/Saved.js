@@ -20,7 +20,7 @@ Object.keys(props.saved).map(x => {
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Language</th>
-        <th scope="col">latest tag</th>
+        <th scope="col">Latest tag</th>
         <th scope="col" />
       </tr>
     </thead>

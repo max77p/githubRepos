@@ -1,6 +1,7 @@
 import React from "react";
 import Aux from "../../hoc/Aux";
 import { Btn } from "../Btn";
+import "./Search.css";
 
 export const Table = props => {
   let button = [];
@@ -22,12 +23,12 @@ export const Table = props => {
   
 
   return [
-    <tr>
+    <tr className="searchResultsTable">
       <td>
-        <a href={props.response.html_url}>{props.response.full_name}</a>
+        <a href={props.response.html_url} target="_blank" rel="noopener" className="gitHubLink">{props.response.full_name}</a>
       </td>
       <td>{props.response.language}</td>
-      <td>@mdo</td>
+      <td>{props.response.tag_name?props.response.tag_name:"_"}</td>
       <td>{button}</td>
     </tr>
   ];

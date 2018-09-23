@@ -11,12 +11,15 @@ class Home extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clickToAdd = this.clickToAdd.bind(this);
+    this.clickToRemove = this.clickToRemove.bind(this);
     this.state = {
       response: [],
       search: "",
       saved: [],
       addedItems: [],
-      disableBtn: false
+      disableBtn: false,
+      prevSearch: "",
+      paginate: 1
     };
   }
 
@@ -24,9 +27,20 @@ class Home extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    this.setState({
-      [name]: value
-    });
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        if (!this.state.search) {
+          this.setState(prevState => {
+            return {
+              response: []
+            };
+          });
+        }
+      }
+    );
   }
 
   handleSearch = event => {
@@ -37,8 +51,8 @@ class Home extends Component {
   clickToAdd = (event, id) => {
     event.preventDefault();
     console.log(id);
-    var getid = event.target.getAttribute("data-id");
-    var y = JSON.parse(getid);
+    let getid = event.target.getAttribute("data-id");
+    let y = JSON.parse(getid);
     // console.log(this.state.response);
 
     this.setState(
@@ -49,8 +63,7 @@ class Home extends Component {
         };
       },
       () => {
-
-        console.log("**********added state****************")
+        console.log("**********added state****************");
         console.log(this.state.saved);
         console.log(this.state.addedItems);
       }
@@ -60,22 +73,22 @@ class Home extends Component {
   clickToRemove = (event, id) => {
     event.preventDefault();
     console.log(id);
-    var getid = event.target.getAttribute("data-id");
-    var y = JSON.parse(getid);
+    let getid = event.target.getAttribute("data-id");
+    let y = JSON.parse(getid);
 
     this.setState(
       prevState => {
         return {
-          saved: prevState.saved.filter((val,index)=>{
-            return val.id !==id;
+          saved: prevState.saved.filter((val, index) => {
+            return val.id !== id;
           }),
-          addedItems:prevState.addedItems.filter((val,index)=>{
-            return val!==id;
-          }),
+          addedItems: prevState.addedItems.filter((val, index) => {
+            return val !== id;
+          })
         };
       },
       () => {
-        console.log("**********removed state****************")
+        console.log("**********removed state****************");
         console.log(this.state.saved);
         console.log(this.state.addedItems);
       }
@@ -83,18 +96,72 @@ class Home extends Component {
   };
 
   apicall() {
-    var search = this.state.search;
-    var queryURL = "https://api.github.com/search/repositories?q=" + search;
-    axios.get(queryURL).then(res => {
-      if (res.data.items.length > 10) {
-        console.log(res.data.items.slice(0, 10));
-        var searchitems = res.data.items.slice(0, 10);
-        this.setState(prevState => {
+    let search = this.state.search;
+
+    let queryURL;
+
+    if (this.state.prevSearch === search) {
+      this.setState(
+        prevState => {
           return {
-            response: [...prevState.response, ...searchitems]
+            paginate: prevState.paginate + 1
           };
-        });
-      }
+        },
+        () => {
+          queryURL =
+            "https://api.github.com/search/repositories?q=" +
+            search +
+            "&sort=stars&per_page=10&page=" +
+            this.state.paginate;
+            this.getData(queryURL,search);
+        }
+      );
+    } else {
+      this.setState(
+        prevState => {
+          return {
+            paginate: 1,
+            response: []
+          };
+        },
+        () => {
+          queryURL =
+            "https://api.github.com/search/repositories?q=" +
+            search +
+            "&sort=stars&per_page=10&page=" +
+            this.state.paginate;
+            this.getData(queryURL,search);
+        }
+      );
+    }
+
+  
+  }
+
+  getData=(queryURL,search)=>{
+    console.log(queryURL);
+    axios
+    .get(queryURL)
+    .then(res => {
+      console.log(res.data.items);
+      this.setState(prevState => {
+        return {
+          response: [...prevState.response, ...res.data.items]
+        };
+      });
+      // }
+    })
+    .then(() => {
+      this.setState(
+        prevState => {
+          return {
+            prevSearch: search
+          };
+        },
+        () => {
+          console.log(this.state.prevSearch);
+        }
+      );
     });
   }
 
@@ -115,7 +182,7 @@ class Home extends Component {
     return [
       <Nav />,
       <div className="row mainRow">
-        <div className="col-md-6 leftCol">
+        <div className="col-sm leftCol">
           <div className="container">
             <Search
               click={this.handleSearch}
@@ -128,7 +195,7 @@ class Home extends Component {
             />
           </div>
         </div>
-        <div className="col-md-6 rightCol">
+        <div className="col-sm rightCol">
           <div className="container">{saved}</div>
         </div>
       </div>

@@ -18,7 +18,7 @@ let content=[];
   return [
     <Aux>
       <form className="formStyle" onSubmit={props.submit}>
-        <div class="form-group searchSection">
+        <div className="form-group searchSection">
           <input
             type="text"
             class="form-control"
@@ -29,21 +29,24 @@ let content=[];
             onChange={props.change}
           />
         </div>
-        <button type="submit" class="btn btn-primary" onClick={props.submit}>
-          Submit
+        <button type="submit" class="btn btn-primary searchBtnStyle" onClick={props.submit}>
+          Search
         </button>
       </form>
     </Aux>,
+    
     <table className="table table-borderless">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Language</th>
-          <th scope="col">latest tag</th>
+          <th scope="col" >Name</th>
+          <th scope="col" >Language</th>
+          <th scope="col" >Latest tag</th>
           <th scope="col" />
         </tr>
       </thead>
+    
       <tbody>{content}</tbody>
     </table>
+    
   ];
 };

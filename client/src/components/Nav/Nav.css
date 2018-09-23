@@ -1,0 +1,14 @@
+.navStyle{
+    background-color:rgb(102,47,239);
+    margin:0 1em 0 1em;
+}
+.navStyle{
+    display:flex;
+    align-items:center;
+    height:5em;
+}
+
+.nav-item a{
+    color:white;
+    font-size:2em;
+}
