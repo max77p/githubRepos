@@ -50,7 +50,7 @@ class Home extends Component {
 
   clickToAdd = (event, id) => {
     event.preventDefault();
-    console.log(id);
+    // console.log(id);
     let getid = event.target.getAttribute("data-id");
     let y = JSON.parse(getid);
     // console.log(this.state.response);
@@ -63,18 +63,18 @@ class Home extends Component {
         };
       },
       () => {
-        console.log("**********added state****************");
-        console.log(this.state.saved);
-        console.log(this.state.addedItems);
+        // console.log("**********added state****************");
+        // console.log(this.state.saved);
+        // console.log(this.state.addedItems);
       }
     );
   };
 
   clickToRemove = (event, id) => {
     event.preventDefault();
-    console.log(id);
-    let getid = event.target.getAttribute("data-id");
-    let y = JSON.parse(getid);
+    // console.log(id);
+    // let getid = event.target.getAttribute("data-id");
+    // let y = JSON.parse(getid);
 
     this.setState(
       prevState => {
@@ -88,9 +88,9 @@ class Home extends Component {
         };
       },
       () => {
-        console.log("**********removed state****************");
-        console.log(this.state.saved);
-        console.log(this.state.addedItems);
+        // console.log("**********removed state****************");
+        // console.log(this.state.saved);
+        // console.log(this.state.addedItems);
       }
     );
   };
@@ -113,7 +113,7 @@ class Home extends Component {
             search +
             "&sort=stars&per_page=10&page=" +
             this.state.paginate;
-            this.getData(queryURL,search);
+          this.getData(queryURL, search);
         }
       );
     } else {
@@ -130,40 +130,41 @@ class Home extends Component {
             search +
             "&sort=stars&per_page=10&page=" +
             this.state.paginate;
-            this.getData(queryURL,search);
+          this.getData(queryURL, search);
         }
       );
     }
-
-  
   }
 
-  getData=(queryURL,search)=>{
-    console.log(queryURL);
+  getData = (queryURL, search) => {
+    // console.log(queryURL);
     axios
-    .get(queryURL)
-    .then(res => {
-      console.log(res.data.items);
-      this.setState(prevState => {
-        return {
-          response: [...prevState.response, ...res.data.items]
-        };
-      });
-      // }
-    })
-    .then(() => {
-      this.setState(
-        prevState => {
+      .get(queryURL)
+      .then(res => {
+        // console.log(res.data.items);
+        this.setState(prevState => {
           return {
-            prevSearch: search
+            response: [...prevState.response, ...res.data.items]
           };
-        },
-        () => {
-          console.log(this.state.prevSearch);
-        }
-      );
-    });
-  }
+        });
+        // }
+      })
+      .then(() => {
+        this.setState(
+          prevState => {
+            return {
+              prevSearch: search
+            };
+          },
+          () => {
+            // console.log(this.state.prevSearch);
+            console.log("*********************************");
+            console.log("You are getting the best coder for this position");
+            console.log("*********************************");
+          }
+        );
+      });
+  };
 
   render() {
     let saved;
@@ -185,6 +186,7 @@ class Home extends Component {
         <div className="col-sm leftCol">
           <div className="container">
             <Search
+              key={this.state.search}
               click={this.handleSearch}
               submit={this.handleSearch}
               change={this.handleChange}

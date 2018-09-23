@@ -7,10 +7,10 @@ let content=[];
 
 Object.keys(props.saved).map(x => {
   if (props.saved[x].id === props.itemsSaved[x]) {
-   content.push(<SaveTable response={props.saved[x]} click={props.clickSave} saved={true} clickRemove={props.clickRemove}/>);
+   return content.push(<SaveTable response={props.saved[x]} click={props.clickSave} saved={true} clickRemove={props.clickRemove}/>);
   }
   else{
-    content.push("")
+    return content.push("")
   }
 });
 

@@ -8,10 +8,10 @@ let content=[];
 
  Object.keys(props.resp).map(x => {
     if (props.itemsSaved.includes(props.resp[x].id)) {
-     content.push(<Table response={props.resp[x]} click={props.clickSave} saved={true}/>);
+     return content.push(<Table response={props.resp[x]} click={props.clickSave} saved={true}/>);
     }
     else{
-      content.push(<Table response={props.resp[x]} click={props.clickSave} saved={false}/>)
+      return content.push(<Table response={props.resp[x]} click={props.clickSave} saved={false}/>)
     }
   });
 
@@ -21,7 +21,7 @@ let content=[];
         <div className="form-group searchSection">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Search"
@@ -29,7 +29,7 @@ let content=[];
             onChange={props.change}
           />
         </div>
-        <button type="submit" class="btn btn-primary searchBtnStyle" onClick={props.submit}>
+        <button type="submit" className="btn btn-primary searchBtnStyle" onClick={props.submit}>
           Search
         </button>
       </form>

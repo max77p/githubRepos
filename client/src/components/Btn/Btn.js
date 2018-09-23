@@ -1,5 +1,4 @@
 import React from "react";
-import Aux from "../../hoc/Aux";
 import "./Btn.css";
 
 export const Btn = props => {
@@ -12,7 +11,7 @@ export const Btn = props => {
         data-id={JSON.stringify(props.response)}
         data-clickid={props.response.id}
         className="btnStyle"
-        href="#"
+        href=""
       >
         Add
       </a>
@@ -24,7 +23,7 @@ export const Btn = props => {
         data-id={JSON.stringify(props.response)}
         data-clickid={props.response.id}
         className="btnStyle"
-        href="#"
+        href=""
       >
         Remove
       </a>

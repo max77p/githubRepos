@@ -1,11 +1,10 @@
 import React from "react";
-import Aux from "../../hoc/Aux";
 import { Btn } from "../Btn";
 import "./Search.css";
 
 export const Table = props => {
   let button = [];
-  let savedBtn=[]
+
   // console.log(props.response);
 
   if (props.saved) {
