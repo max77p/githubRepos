@@ -12,7 +12,7 @@ Build a web app to search Github repositories, favourite repos, manage favourite
 - Typing in the search input field should **NOT** perform an API call - DONE
 - Hitting enter or clicking the "Search" button should perform an API call to Github -DONE
 
-- Performing a search should render a list of **10 repositories**
+- Performing a search should render a list of **10 repositories** -DONE
 	- Each item should
 		- render the name with owner *(Ex. shopify/polaris)* and link to the repo's page on Github - DONE
 		- render the name of the primary language -DONE
